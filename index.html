@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<!--
+  A FEW THINGS STILL TO FILL IN
+  1. Each project's "GitHub" link currently points to your profile
+     (https://github.com/JovannahAMoxey) — update to the specific repo URL
+     once each project is pushed, if you'd rather link directly to it.
+  2. The "Case study" links under each project are still placeholders (#) —
+     point them to a write-up if you make one, or delete the link if not.
+  3. Each project mockup is currently an emoji in a card. If you have real
+     screenshots, replace the .mockup div's content with an <img> tag.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jovannah Annie Moxey — Software Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blush: #FFF3F8;
+    --blush-deep: #FFE3F0;
+    --hot-pink: #FF5DA2;
+    --hot-pink-dark: #E8438A;
+    --berry: #7A1450;
+    --ink: #2B1830;
+    --ink-soft: #5B4358;
+    --gold: #FFCF5C;
+    --card-white: #FFFCFE;
+    --tape: #FFD9EC;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--blush);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .display {
+    font-family: 'Baloo 2', cursive;
+    color: var(--berry);
+    margin: 0;
+  }
+
+  a { color: inherit; }
+
+  /* subtle floating sparkle field, one orchestrated background moment */
+  .sparkle-field {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .sparkle {
+    position: absolute;
+    color: var(--gold);
+    opacity: 0;
+    animation: twinkle 4s ease-in-out infinite;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(0.6) rotate(0deg); }
+    50% { opacity: 0.9; transform: scale(1) rotate(25deg); }
+  }
+
+  .wrap {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(255, 243, 248, 0.85);
+    backdrop-filter: blur(6px);
+    z-index: 10;
+    border-bottom: 2px solid var(--blush-deep);
+  }
+  nav .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  .nav-name {
+    font-family: 'Baloo 2', cursive;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--berry);
+  }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--ink-soft);
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover { color: var(--hot-pink-dark); }
+
+  /* HERO */
+  header.hero {
+    padding: 110px 0 90px;
+    position: relative;
+  }
+  .hero-kicker {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--hot-pink-dark);
+    background: var(--tape);
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 22px;
+    transform: rotate(-2deg);
+  }
+  .hero h1 {
+    font-size: clamp(44px, 7vw, 72px);
+    line-height: 1.05;
+    font-weight: 800;
+    max-width: 11ch;
+  }
+  .hero p.tagline {
+    font-size: 19px;
+    color: var(--ink-soft);
+    max-width: 46ch;
+    margin-top: 22px;
+    line-height: 1.6;
+  }
+  .hero-cta {
+    margin-top: 36px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 26px;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    border: 2px solid transparent;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-primary {
+    background: var(--hot-pink);
+    color: white;
+    box-shadow: 0 6px 0 var(--hot-pink-dark);
+  }
+  .btn-primary:hover { transform: translateY(2px); box-shadow: 0 4px 0 var(--hot-pink-dark); }
+  .btn-ghost {
+    background: transparent;
+    border-color: var(--berry);
+    color: var(--berry);
+  }
+  .btn-ghost:hover { background: var(--blush-deep); }
+
+  /* SECTION HEADERS */
+  section { padding: 70px 0; position: relative; }
+  .section-title {
+    font-size: clamp(30px, 4vw, 40px);
+    font-weight: 700;
+    margin-bottom: 44px;
+  }
+
+  /* PROJECTS - alternating rows, not identical cards */
+  .project {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    margin-bottom: 84px;
+  }
+  .project:nth-child(even) .mockup { order: 2; }
+  .project:nth-child(even) .project-copy { order: 1; }
+
+  .mockup {
+    position: relative;
+    background: var(--card-white);
+    border-radius: 18px;
+    padding: 30px;
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+    box-shadow: 0 14px 34px rgba(122, 20, 80, 0.12);
+  }
+  .mockup::before {
+    content: '';
+    position: absolute;
+    top: -14px;
+    left: 28px;
+    width: 60px;
+    height: 22px;
+    background: var(--tape);
+    opacity: 0.9;
+    transform: rotate(-6deg);
+    border-radius: 2px;
+  }
+
+  .project-copy h3 {
+    font-size: 26px;
+    margin-bottom: 12px;
+  }
+  .project-copy p {
+    color: var(--ink-soft);
+    line-height: 1.65;
+    font-size: 16px;
+    margin-bottom: 18px;
+  }
+  .tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    background: var(--blush-deep);
+    color: var(--berry);
+    padding: 5px 12px;
+    border-radius: 100px;
+    font-weight: 500;
+  }
+  .project-links { display: flex; gap: 20px; }
+  .project-links a {
+    font-weight: 700;
+    font-size: 14.5px;
+    text-decoration: none;
+    color: var(--hot-pink-dark);
+    border-bottom: 2px solid var(--hot-pink);
+    padding-bottom: 2px;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+  .about-grid p {
+    color: var(--ink-soft);
+    line-height: 1.75;
+    font-size: 16.5px;
+  }
+  .skills-box {
+    background: var(--card-white);
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: 0 14px 34px rgba(122, 20, 80, 0.1);
+  }
+  .skills-box h3 { font-size: 18px; margin-bottom: 16px; }
+  .skill-list { display: flex; flex-wrap: wrap; gap: 9px; }
+  .skill-pill {
+    font-size: 13.5px;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 100px;
+    background: var(--blush-deep);
+    color: var(--berry);
+  }
+
+  /* CONTACT */
+  .contact-section {
+    text-align: left;
+    padding-bottom: 120px;
+  }
+  .contact-card {
+    background: linear-gradient(135deg, var(--hot-pink), #FF8FC4);
+    border-radius: 26px;
+    padding: 56px;
+    color: white;
+  }
+  .contact-card h2 { color: white; font-size: clamp(28px, 4vw, 38px); }
+  .contact-card p {
+    color: rgba(255,255,255,0.9);
+    max-width: 50ch;
+    margin-top: 14px;
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  .contact-links {
+    margin-top: 30px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .contact-links a {
+    background: white;
+    color: var(--berry);
+    text-decoration: none;
+    font-weight: 700;
+    padding: 13px 24px;
+    border-radius: 100px;
+    font-size: 14.5px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 26px 0 40px;
+    color: var(--ink-soft);
+    font-size: 13.5px;
+  }
+
+  @media (max-width: 760px) {
+    .project { grid-template-columns: 1fr; }
+    .project:nth-child(even) .mockup,
+    .project:nth-child(even) .project-copy { order: unset; }
+    .about-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sparkle { animation: none; opacity: 0.5; }
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 3px solid var(--berry);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+
+<div class="sparkle-field" id="sparkleField"></div>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-name">Jovannah Moxey ✦</div>
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="hero-kicker">Computing Science graduate, Saint Mary's University</span>
+    <h1>I build software that feels as good as it works.</h1>
+    <p class="tagline">Hi, I'm Jovannah — a full-stack developer who enjoys building applications that solve real problems, from e-commerce systems to accessibility-first tools for the community. Here's a look at what I've been building.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#projects">See my projects</a>
+      <a class="btn btn-ghost" href="#contact">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<section id="projects">
+  <div class="wrap">
+    <h2 class="section-title">Selected projects</h2>
+
+    <div class="project">
+      <div class="mockup">📝</div>
+      <div class="project-copy">
+        <h3>Nourished Notes</h3>
+        <p>A 10+ page dynamic full-stack web application with secure login and registration, encrypted passwords, and session management. It includes a complete e-commerce system — product catalogue, shopping cart, and checkout — backed by a live inventory database, with AJAX powering real-time updates and MongoDB serving dynamic daily quote content.</p>
+        <div class="tags">
+          <span class="tag">PHP</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">MongoDB</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">AJAX</span>
+        </div>
+        <div class="project-links">
+          <a href="#">Case study</a>
+          <a href="https://github.com/JovannahAMoxey" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="mockup">🌲</div>
+      <div class="project-copy">
+        <h3>Woodland Conservation Website</h3>
+        <p>A conservation-focused website built for a real site, using GPS and location functionality so visitors can learn about the trees and landmarks around them as they walk. A "Talking Trees" feature narrates information aloud through visitors' mobile devices, alongside accessibility support for hearing- and vision-impaired users and a digital signature and social-sharing feature for leaving notes about their visit.</p>
+        <div class="tags">
+          <span class="tag">JavaScript</span>
+          <span class="tag">Geolocation API</span>
+          <span class="tag">HTML/CSS</span>
+          <span class="tag">Accessibility</span>
+        </div>
+        <div class="project-links">
+          <a href="#">Case study</a>
+          <a href="https://github.com/JovannahAMoxey" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="mockup">🍁</div>
+      <div class="project-copy">
+        <h3>Mi'kmaq Language App</h3>
+        <p>An educational language application built with a student development team to help kindergarten students in Nova Scotia learn Mi'kmaq. I helped design a more engaging, interactive interface for young learners and implemented features that supported the app's educational goals while staying mindful of cultural sensitivity.</p>
+        <div class="tags">
+          <span class="tag">UI/UX Design</span>
+          <span class="tag">Team Collaboration</span>
+          <span class="tag">Educational Software</span>
+        </div>
+        <div class="project-links">
+          <a href="#">Case study</a>
+          <a href="https://github.com/JovannahAMoxey" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <h2 class="section-title">About me</h2>
+    <div class="about-grid">
+      <p>
+        I'm a Computer Science graduate with experience in technical problem-solving, data analysis, customer service, and software projects, with strong communication and adaptability.
+      </p>
+      <div class="skills-box">
+        <h3>Tools I reach for</h3>
+        <div class="skill-list">
+          <span class="skill-pill">PHP</span>
+          <span class="skill-pill">MySQL</span>
+          <span class="skill-pill">MongoDB</span>
+          <span class="skill-pill">JavaScript</span>
+          <span class="skill-pill">AJAX</span>
+          <span class="skill-pill">HTML/CSS</span>
+          <span class="skill-pill">Geolocation APIs</span>
+          <span class="skill-pill">Accessibility Design</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact-section">
+  <div class="wrap">
+    <div class="contact-card">
+      <h2>Let's build something together.</h2>
+      <p>Whether you have a project in mind or just want to say hi, my inbox is always open.</p>
+      <div class="contact-links">
+        <a href="mailto:jovannahmoxeydev@gmail.com">Email me</a>
+        <a href="https://github.com/JovannahAMoxey" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/jovannah-annie-moxey-837a0635a/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Made with care by Jovannah Annie Moxey · © 2026
+</footer>
+
+<script>
+  // one orchestrated sparkle moment scattered across the background
+  const field = document.getElementById('sparkleField');
+  const glyphs = ['✦', '✧', '✩'];
+  const count = 22;
+  for (let i = 0; i < count; i++) {
+    const el = document.createElement('span');
+    el.className = 'sparkle';
+    el.textContent = glyphs[Math.floor(Math.random() * glyphs.length)];
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.top = Math.random() * 100 + 'vh';
+    el.style.fontSize = (10 + Math.random() * 16) + 'px';
+    el.style.animationDelay = (Math.random() * 4) + 's';
+    el.style.animationDuration = (3 + Math.random() * 3) + 's';
+    field.appendChild(el);
+  }
+</script>
+
+</body>
+</html>
