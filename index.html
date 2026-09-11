@@ -247,6 +247,50 @@
     padding-bottom: 2px;
   }
 
+  /* EXPERIENCE */
+  .exp-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 32px;
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+    border-bottom: 2px dashed var(--blush-deep);
+  }
+  .exp-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .exp-dates {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13.5px;
+    color: var(--hot-pink-dark);
+    font-weight: 500;
+    padding-top: 4px;
+  }
+  .exp-role h3 {
+    font-size: 21px;
+    margin-bottom: 2px;
+  }
+  .exp-company {
+    font-weight: 600;
+    color: var(--ink-soft);
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+  .exp-role ul {
+    margin: 0;
+    padding-left: 20px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    font-size: 15.5px;
+  }
+  .exp-role li { margin-bottom: 6px; }
+
+  @media (max-width: 760px) {
+    .exp-item { grid-template-columns: 1fr; gap: 6px; }
+  }
+
   /* ABOUT */
   .about-grid {
     display: grid;
@@ -345,6 +389,7 @@
     <div class="nav-name">Jovannah Moxey ✦</div>
     <div class="nav-links">
       <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </div>
@@ -353,12 +398,13 @@
 
 <header class="hero">
   <div class="wrap">
-    <span class="hero-kicker">Computing Science graduate, Saint Mary's University</span>
+    <span class="hero-kicker">Computer Science graduate</span>
     <h1>I build software that feels as good as it works.</h1>
     <p class="tagline">Hi, I'm Jovannah — a full-stack developer who enjoys building applications that solve real problems, from e-commerce systems to accessibility-first tools for the community. Here's a look at what I've been building.</p>
     <div class="hero-cta">
       <a class="btn btn-primary" href="#projects">See my projects</a>
       <a class="btn btn-ghost" href="#contact">Get in touch</a>
+      <a class="btn btn-ghost" href="Jovannah_Moxey_Resume.pdf" download>Download resume ↓</a>
     </div>
   </div>
 </header>
@@ -420,6 +466,39 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <h2 class="section-title">Experience</h2>
+
+    <div class="exp-item">
+      <div class="exp-dates">Jul 2025 — Jan 2026</div>
+      <div class="exp-role">
+        <h3>Apple Specialist</h3>
+        <div class="exp-company">Apple</div>
+        <ul>
+          <li>Delivered personalized technology solutions to 200+ customers per week, troubleshooting setup needs and configuring devices to each customer's requirements.</li>
+          <li>Consistently met or exceeded sales and customer-satisfaction targets, contributing to overall store performance.</li>
+          <li>Built lasting customer relationships through detailed product knowledge and clear, accurate guidance.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-dates">May 2023 — Aug 2023</div>
+      <div class="exp-role">
+        <h3>Applications/Software Technician</h3>
+        <div class="exp-company">Multimedia Technologies</div>
+        <ul>
+          <li>Managed and updated software applications, troubleshooting functionality issues to support reliable performance.</li>
+          <li>Assisted in installing and configuring advanced audio/visual technology for client solutions.</li>
+          <li>Delivered technical support by addressing inquiries and ensuring client satisfaction with provided services.</li>
+        </ul>
+      </div>
+    </div>
+
   </div>
 </section>
 
